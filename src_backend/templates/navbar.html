@@ -1,0 +1,52 @@
+{% load static %}
+
+<!-- * Banner -->
+<header>
+
+    <a
+      href="https://github.com/OSCA-Ado-Ekiti/tech-companies-in-africa"
+      target="_blank"
+      class="contribute-link"
+      ><img src="{% static 'img/github.png' %}" alt="github icon" />GitHub</a
+    >
+
+    <div class="header-wrapper">
+        <h1 class="header-title">List Of Tech Companies In Africa.</h1>
+          <p class="header-subtitle"
+            >A List of Tech companies in Africa, their founder(s), the industry
+            they are into, and their twitter handles.</p
+          >
+        
+        
+        <p class="company-nav-links" id="nav-links">
+            <form class="form" action="#" method="get">
+                <label for="formInput#search">Search Tech Company</label>
+                <input class="input input--text" id="formInput#search" type="text" name="search"
+            placeholder="Search by tech companies" />
+            </form>
+        </p>
+
+        <p class="company-nav-links" id="nav-links">
+        {% for industry in industries %} 
+            <a href="{% url 'industry:tech_industry' industry.indus_slug %}"> {{ industry.industry_name }} </a> | 
+        {% empty %} 
+        <p class="company-nav-links" id="nav-links"> Opps! (:</p> 
+        {% endfor %}
+        </p>
+
+        <p class="company-nav-links" id="nav-links">
+            <a href="{% url 'industry:tech_list' %}">Home</a> 
+        </p> 
+
+        <p class="company-nav-links" id="nav-links"> 
+        {% for alpha in alphabeth %}  
+            <a href='{% url "industry:tech_alphabeth" alpha.alphabet %}'>{{ alpha.alphabet }}</a> |
+        {% empty %} 
+        <p class="company-nav-links" id="nav-links"> Opps! (:</p> 
+        {% endfor %}
+        </p> 
+
+    </div>
+</header>
+
+
