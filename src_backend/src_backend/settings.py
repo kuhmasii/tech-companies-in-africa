@@ -29,7 +29,7 @@ DEBUG = env('DEBUG')
 
 SECRET_KEY = env('SECRET_KEY')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['techcompany.pythonanywhere.com']
 
 
 # Application definition
@@ -83,8 +83,11 @@ WSGI_APPLICATION = 'src_backend.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME':env('NAME'),
+        'USER':env('USER'),
+        'PASSWORD':env('PASSWORD'),
+        'HOST':env('HOST'),
     }
 }
 
@@ -125,9 +128,11 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-STATICFILES_DIRS = [
-    BASE_DIR / 'static'
-]
+STATIC_ROOT = '/home/TechCompany/tech-companies-in-africa/src_backend/static'
+
+# STATICFILES_DIRS = [
+#     BASE_DIR / 'static'
+# ]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
