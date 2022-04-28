@@ -1,4 +1,4 @@
-{% extends 'main.html' %}
+<!-- {% extends 'main.html' %}
 {% load static %}
 {% load industry_customtag %}
 
@@ -13,18 +13,29 @@
 		<li class="company-card">
 			<h3 class="company-card_name">{{ company.company_name }}</h3>
 
-			<a class="company-card_website" href="#" target="_blank" rel="noopener noreferrer">
+			<a class="company-card_website" href="{{ company.website_url }}" target="_blank" rel="noopener noreferrer">
 			  <img src="{% static 'img/external-link.png' %}" alt="external link icon"/>
 			</a>
 
 			<p class="company-card_industry">Industry: {{ company.industry.industry_name }}</p>
 
 			<p class="company-card_founders"> Founders:
-				<a  href="#" rel="noopener noreferrer" >@{{ company.founders }}</a>
+				{% if company.founders|seperate_string|length > 1 %}
+				<a  href="http://twitter.com/{{ company.founders|seperate_string|first }}" target="_blank" rel="noopener noreferrer" >
+					@{{ company.founders|seperate_string|first }} 
+				</a>
+				<a  href="http://twitter.com/{{ company.founders|seperate_string|last }}" target="_blank" rel="noopener noreferrer" >
+					@{{ company.founders|seperate_string|last }}
+				</a>
+				{% else %}
+				<a  href="http://twitter.com/{{ company.founders|seperate_string|last }}" target="_blank" rel="noopener noreferrer" >
+					@{{ company.founders|seperate_string|last }}
+				</a>
+				{% endif %}
 			</p>
 
 			<p class="company-card_twitter-handle"> Twitter Handle:
-		  		<a href="http://twitter.com/" target="_blank" rel="noopener noreferrer">
+		  		<a href="http://twitter.com/{{ company.twitter_handle}}" target="_blank" rel="noopener noreferrer">
 		  		@{{ company.twitter_handle }}
 		  		</a>
 			</p>
@@ -35,4 +46,4 @@
 	</ul>
 </div>
 
-{% endblock content %}
+{% endblock content %} -->

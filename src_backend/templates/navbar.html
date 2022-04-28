@@ -4,7 +4,7 @@
 <header>
 
     <a
-      href="https://github.com/OSCA-Ado-Ekiti/tech-companies-in-africa"
+      href="https://github.com/kuhmasii/tech-companies-in-africa.git"
       target="_blank"
       class="contribute-link"
       ><img src="{% static 'img/github.png' %}" alt="github icon" />GitHub</a
@@ -17,21 +17,12 @@
             they are into, and their twitter handles.</p
           >
         
-        
         <p class="company-nav-links" id="nav-links">
-            <form class="form" action="#" method="get">
-                <label for="formInput#search">Search Tech Company</label>
-                <input class="input input--text" id="formInput#search" type="text" name="search"
-            placeholder="Search by tech companies" />
+            <form class="form" method="get">
+                  <label for="formGroupExampleInput" class="form-label">Search Tech Company</label>
+                  <input type="text" class="form-control" name='search' id="formGroupExampleInput" 
+                  placeholder="search by tech companies"> 
             </form>
-        </p>
-
-        <p class="company-nav-links" id="nav-links">
-        {% for industry in industries %} 
-            <a href="{% url 'industry:tech_industry' industry.indus_slug %}"> {{ industry.industry_name }} </a> | 
-        {% empty %} 
-        <p class="company-nav-links" id="nav-links"> Opps! (:</p> 
-        {% endfor %}
         </p>
 
         <p class="company-nav-links" id="nav-links">
