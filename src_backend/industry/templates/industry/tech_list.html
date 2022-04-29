@@ -1,0 +1,47 @@
+{% extends 'main.html' %}
+{% load industry_customtag %}
+{% load static %}
+
+{% block title %} Tech List {% endblock title %}
+ 
+{% block content %}
+<div class="main-wrapper"> 
+	<ul class="companies-list">
+	{% for company in companies %}
+		<li class="company-card">
+			<h3 class="company-card_name">{{ company.company_name }}</h3>
+
+			<a class="company-card_website" href="{{ company.website_url }}" target="_blank" rel="noopener noreferrer">
+			  <img src="{% static 'img/external-link.png' %}" alt="external link icon"/>
+			</a>
+
+			<p class="company-card_industry">Industry: {{ company.industry.industry_name }}</p>
+
+			<p class="company-card_founders"> Founders:
+				{% if company.founders|seperate_string|length > 1 %}
+				<a  href="http://twitter.com/{{ company.founders|seperate_string|first }}" target="_blank" rel="noopener noreferrer" >
+					@{{ company.founders|seperate_string|first }} 
+				</a>
+				<a  href="http://twitter.com/{{ company.founders|seperate_string|last }}" target="_blank" rel="noopener noreferrer" >
+					@{{ company.founders|seperate_string|last }}
+				</a>
+				{% else %}
+				<a  href="http://twitter.com/{{ company.founders|seperate_string|last }}" target="_blank" rel="noopener noreferrer" >
+					@{{ company.founders|seperate_string|last }}
+				</a>
+				{% endif %}
+			</p>
+
+			<p class="company-card_twitter-handle"> Twitter Handle:
+		  		<a href="http://twitter.com/{{ company.twitter_handle}}" target="_blank" rel="noopener noreferrer">
+		  		@{{ company.twitter_handle }}
+		  		</a>
+			</p>
+		</li>
+	{% empty %} 
+        <p class="company-nav-links" id="nav-links"> Opps! No Tech Company Yet :)</p> 
+	{% endfor %}
+	</ul>
+</div>
+
+{% endblock content %}
