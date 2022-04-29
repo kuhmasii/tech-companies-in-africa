@@ -1,6 +1,5 @@
 from django.db import models
 
-
 class TechIndustry(models.Model):
     industry_name = models.CharField(max_length=200, blank=False, null=False)
     indus_slug = models.SlugField(max_length=150)
@@ -64,3 +63,6 @@ class TechCompany(models.Model):
 
     def __str__(self):
         return self.company_name
+
+
+
