@@ -14,21 +14,25 @@ from industry.models import (
 import json
 
 
-file = open('techCompanies.json', 'r')
-json_file = json.load(file)
+def file():
+	file = open('techCompanies.json', 'r')
+	json_file = json.load(file)
+	return json_file
 
-def populate_techlist():
-	for key, values in json_file.items():
+def populate_techlist(json_file):
+	for keys, values in json_file.items():
 		try:
-			obj = TechList.objects.filter(alphabet__iexact=key)
+			obj = TechList.objects.filter(alphabet__iexact=keys)
 
 			if not obj.exists():
-				TechList.objects.create(alphabet=key.upper())
-		except IndexError:
-			pass
+				TechList.objects.create(alphabet=keys.upper())
+			else:
+				print(f'{obj.first()} already exists.')
+		except:
+			print('something went wrong')
 	return TechList.objects.all()
 
-def populate_industry():
+def populate_industry(json_file):
 	for keys,values in json_file.items():
 		for val in values:
 			try:
@@ -40,12 +44,13 @@ def populate_industry():
 					TechIndustry.objects.create(
 							industry_name=val['industry']
 						)
-					print(val['industry'])
+				else:
+					print(f'{obj.first()} already exists.')
 			except:
-				pass
+				print('something went wrong')
 	return TechIndustry.objects.all()
 
-def populate_company():
+def populate_company(json_file):
 	for keys,values in json_file.items():
 		for val in values:
 			try:
@@ -66,12 +71,15 @@ def populate_company():
 							founders=", ".join(val['foundersTwitterHandle']),
 							twitter_handle=val['companyTwitterHandle'],
 						)
-					print(val['companyName'])
+				else:
+					print(f'{obj.first()} already exists.')
 			except:
 				print("something gone wrong")
 	return TechCompany.objects.all()
 
 
-populate_techlist()
-populate_industry()
-populate_company()
+
+file = file()
+populate_techlist(file)
+populate_industry(file)
+populate_company(file)
