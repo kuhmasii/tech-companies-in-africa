@@ -59,10 +59,10 @@ class TechIndustryTests(TestCase):
         ins = TechIndustry.objects.get(pk=1)
         alpha = TechList.objects.create(alphabet='G')
         company = TechCompany.objects.create(
-        						industry=ins, 
-        						comp_alphabet=alpha,
-                                company_name='GAMERS*FREAKS'
-                             )
+            industry=ins,
+            comp_alphabet=alpha,
+            company_name='GAMERS*FREAKS'
+        )
 
         get_company = ins.get_company_by_indus()
 
@@ -136,13 +136,13 @@ class TechListests(TestCase):
         """
         ins = TechList.objects.get(pk=1)
         industry = TechIndustry.objects.create(
-                                industry_name="Gaming Tech"
-                        )
+            industry_name="Gaming Tech"
+        )
         company = TechCompany.objects.create(
-                                industry=industry, 
-                                comp_alphabet=ins,
-                                company_name='GAMERS*FREAKS'
-                             )
+            industry=industry,
+            comp_alphabet=ins,
+            company_name='GAMERS*FREAKS'
+        )
 
         get_company = ins.get_company_by_alpha()
 
@@ -171,9 +171,9 @@ class TechCompanyTests(TestCase):
         )
         TechCompany.objects.create(
             industry=indus,
-            comp_alphabet = alpha,
-            company_name = "GAMERS*FREAKS"
-            )
+            comp_alphabet=alpha,
+            company_name="GAMERS*FREAKS"
+        )
 
     def test_techcompany_creation(self):
         """
