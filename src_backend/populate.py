@@ -80,6 +80,6 @@ def populate_company(json_file):
 
 
 file = file()
-populate_techlist(file)
 populate_industry(file)
+populate_techlist(file)
 populate_company(file)

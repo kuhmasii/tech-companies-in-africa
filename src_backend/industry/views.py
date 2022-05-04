@@ -52,3 +52,6 @@ def tech_alphabeth(request, alpha_name):
 
 def page_not_found_view(request, exception):
     return render(request, '404.html')
+
+
+

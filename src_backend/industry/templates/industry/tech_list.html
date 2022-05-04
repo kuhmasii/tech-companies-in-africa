@@ -19,12 +19,11 @@
 
 			<p class="company-card_founders"> Founders:
 				{% if company.founders|seperate_string|length > 1 %}
-				<a  href="http://twitter.com/{{ company.founders|seperate_string|first }}" target="_blank" rel="noopener noreferrer" >
-					@{{ company.founders|seperate_string|first }} 
-				</a>
-				<a  href="http://twitter.com/{{ company.founders|seperate_string|last }}" target="_blank" rel="noopener noreferrer" >
-					@{{ company.founders|seperate_string|last }}
-				</a>
+					{% for founders in company.founders|seperate_string %}
+					<a  href="http://twitter.com/{{ company.founders|seperate_string|first }}" target="_blank" rel="noopener noreferrer" >
+						@{{ founders }} 
+					</a>
+					{% endfor %}
 				{% else %}
 				<a  href="http://twitter.com/{{ company.founders|seperate_string|last }}" target="_blank" rel="noopener noreferrer" >
 					@{{ company.founders|seperate_string|last }}
@@ -43,5 +42,4 @@
 	{% endfor %}
 	</ul>
 </div>
-
 {% endblock content %}
